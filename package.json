@@ -10,14 +10,18 @@
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.2.0",
+    "@ckeditor/ckeditor5-react": "^8.0.0",
     "@nextui-org/react": "^2.4.1",
     "@prisma/client": "^5.15.0",
+    "ckeditor5": "^42.0.2",
     "framer-motion": "^11.2.10",
     "next": "14.2.3",
     "next-auth": "^5.0.0-beta.19",
     "react": "^18",
     "react-dom": "^18",
-    "react-icons": "^5.2.1"
+    "react-froala-wysiwyg": "^4.2.1",
+    "react-icons": "^5.2.1",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20",
