@@ -64,8 +64,17 @@ export default function PostCreateForm() {
                         <h3>Content</h3>
                         <textarea value={content} name="content" hidden></textarea>
                         <CustomEditor setData={updateContent} />
+                        {formState.errors.content && (
+                            <p className="text-red-500">{formState.errors.content}</p>
+                        )}
                     </div>
-                    <ImagePicker label="Post Image" name="image" />
+                    <div>
+                      <ImagePicker label="Post Image" name="image" />
+                        {formState.errors.image && (
+                            <p className="text-red-500">{formState.errors.image}</p>
+                        )}
+                    </div>
+
                     <FormButton>Create Post</FormButton>
                 </div>
             </form>
