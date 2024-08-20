@@ -75,7 +75,7 @@ export default function PostCreateForm() {
                         )}
                     </div>
 
-                    <FormButton>Create Post</FormButton>
+                    <FormButton color="success">Create Post</FormButton>
                 </div>
             </form>
         </>

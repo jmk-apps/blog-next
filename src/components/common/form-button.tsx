@@ -5,13 +5,14 @@ import {useFormStatus} from "react-dom";
 
 interface FormButtonProps {
     children: React.ReactNode;
+    color: any,
 }
 
-const FormButton = ({children}: FormButtonProps) => {
+const FormButton = ({children, color}: FormButtonProps) => {
     const {pending} = useFormStatus()
 
     return (
-        <Button type="submit" isLoading={pending}>
+        <Button type="submit" color={color} isLoading={pending}>
             {children}
         </Button>
     )

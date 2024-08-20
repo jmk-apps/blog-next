@@ -16,7 +16,7 @@
     "ckeditor5": "^42.0.2",
     "cloudinary": "^2.4.0",
     "framer-motion": "^11.2.10",
-    "next": "14.2.3",
+    "next": "^14.2.5",
     "next-auth": "^5.0.0-beta.19",
     "next-cloudinary": "^6.10.0",
     "react": "^18",
