@@ -45,7 +45,7 @@ export default function CommentCreateForm({
                   </div>
               ) : null}
 
-              <FormButton color="success">Create Comment</FormButton>
+              <FormButton color="success">Post</FormButton>
           </div>
       </form>
   );

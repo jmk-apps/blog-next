@@ -108,7 +108,7 @@ export async function createPost(formState: CreatePostFormState, formData: FormD
                 subtitle: result.data.subtitle,
                 category: result.data.category,
                 content: result.data.content,
-                userId: session.user.id || "no user id",
+                userId: session.user.id,
                 post_pic: post_image
             }
         })
