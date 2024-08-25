@@ -3,6 +3,7 @@ import {notFound} from "next/navigation";
 import Image from "next/image";
 import sanitizeHtml from 'sanitize-html';
 import PostDeleteButton from "@/components/posts/post-delete-button";
+import {dateFormatter} from "@/lib/date-formatter";
 
 interface PostShowProps {
     postId: string;
@@ -24,11 +25,8 @@ export default async function PostShow({postId}: PostShowProps) {
    }
 
    //Format the date
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    const days = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12',
-        '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
     let post_date: string;
-    post_date = `${days[post.createdAt.getDay()-1]}-${months[post.createdAt.getMonth()]}-${post.createdAt.getFullYear()}`
+    post_date = dateFormatter(post.createdAt)
 
    // Sanitize the content
    const clean_content = sanitizeHtml(post.content)
@@ -50,8 +48,6 @@ export default async function PostShow({postId}: PostShowProps) {
           <div dangerouslySetInnerHTML={{__html: clean_content}}/>
           <PostDeleteButton postId={postId} />
           <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"/>
-
-
       </div>
   );
 }
