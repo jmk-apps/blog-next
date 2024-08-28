@@ -1,3 +1,4 @@
+import PostListHome from "@/components/posts/post-list-home";
 
 
 export default function Home() {
@@ -5,6 +6,7 @@ export default function Home() {
       <div className="grid grid-cols-4 gap-4 p-4">
           <div className="col-span-3">
              <h1>Posts go here</h1>
+              <PostListHome/>
           </div>
           <div className="col-span-1">
               <h1>Notifications go here</h1>

@@ -5,14 +5,15 @@ import {useFormState} from "react-dom";
 import { useState } from 'react';
 import {
     Input,
-    Button,
-    Textarea
+    Select,
+    SelectItem
 } from "@nextui-org/react";
 import * as actions from "@/actions";
 import FormButton from "@/components/common/form-button";
 import dynamic from "next/dynamic";
 import {set} from "zod";
 import ImagePicker from "@/components/images/image-picker";
+import {categories} from "@/lib/help-functions";
 
 const CustomEditor = dynamic( () => import( '@/components/ckeditor/custom-editor' ), { ssr: false } );
 
@@ -51,15 +52,22 @@ export default function PostCreateForm() {
                         isInvalid={!!formState.errors.subtitle}
                         errorMessage={formState.errors.subtitle}
                     />
-                    <Input
+                    <Select
                         name="category"
                         label="Category"
                         labelPlacement="outside"
-                        placeholder="category"
+                        placeholder="Select a category"
+                        className="max-w-xs"
                         isRequired
                         isInvalid={!!formState.errors.category}
                         errorMessage={formState.errors.category}
-                    />
+                      >
+                        {categories.map((category) => (
+                          <SelectItem key={category.key}>
+                            {category.label}
+                          </SelectItem>
+                        ))}
+                    </Select>
                     <div>
                         <h3>Content</h3>
                         <textarea value={content} name="content" hidden></textarea>

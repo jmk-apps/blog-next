@@ -1,6 +1,7 @@
 import type {Post} from "@prisma/client";
 import {db} from "@/db";
 
+const ITEMS_PER_PAGE = 5;
 
 export type PostWithData = (
     Post & {
@@ -9,7 +10,15 @@ export type PostWithData = (
 )
 
 
-export function fetchTopPosts(): Promise<PostWithData[]> {
+export function fetchTopPosts(page?: string): Promise<PostWithData[]> {
+    let skip_results: number;
+    if (!page) {
+        page = '1'
+    }
+
+    skip_results = ITEMS_PER_PAGE * (parseInt(page) - 1);
+
+
     return db.post.findMany({
         orderBy: [
             {
@@ -19,7 +28,8 @@ export function fetchTopPosts(): Promise<PostWithData[]> {
         include: {
             user: {select: {name: true}},
         },
-        take: 5,
+        skip: skip_results,
+        take: ITEMS_PER_PAGE,
     })
 }
 

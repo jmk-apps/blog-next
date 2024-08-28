@@ -26,7 +26,7 @@ const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png"];
 const createPostSchema = z.object({
     title: z.string().min(3),
     subtitle: z.string().min(8),
-    category: z.string().min(4),
+    category: z.string({message: "You must select a category is required" }),
     content: z.string().min(30),
     image: z
     .any()
@@ -109,7 +109,7 @@ export async function createPost(formState: CreatePostFormState, formData: FormD
                 category: result.data.category,
                 content: result.data.content,
                 userId: session.user.id,
-                post_pic: post_image
+                post_pic: post_image,
             }
         })
 

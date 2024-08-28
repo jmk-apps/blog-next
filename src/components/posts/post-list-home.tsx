@@ -1,7 +1,9 @@
+
+
 import type { Post, User} from '@prisma/client';
 import Link from 'next/link';
 import paths from '@/paths';
-import type {PostWithData} from '@/db/queries/post';
+import {fetchTopPosts, PostWithData} from '@/db/queries/post';
 import Image from "next/image";
 import PostDeleteButton from "@/components/posts/post-delete-button";
 import {helpFunctions} from "@/lib/help-functions";
@@ -12,8 +14,8 @@ interface PostListProps {
 }
 
 
-export default async function PostList({fetchData}: PostListProps) {
-  const posts = await fetchData();
+export default async function PostListHome() {
+  const posts = await fetchTopPosts();
 
   const renderedPosts = posts.map((post) => {
 
