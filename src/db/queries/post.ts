@@ -1,7 +1,7 @@
 import type {Post} from "@prisma/client";
 import {db} from "@/db";
 
-const ITEMS_PER_PAGE = 5;
+export const ITEMS_PER_PAGE = 2;
 
 export type PostWithData = (
     Post & {

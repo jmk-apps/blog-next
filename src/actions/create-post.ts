@@ -130,16 +130,8 @@ export async function createPost(formState: CreatePostFormState, formData: FormD
        }
     }
 
-    return {
-        errors: {}
-    }
+    revalidatePath(paths.home())
+    redirect(paths.postShow(post.id))
 
 
-    // TODO: revalidate the home page
-    // revalidatePath(paths.home())
-
-    // TODO: create the post show page
-    // TODO: revalidate the post show page
-
-    // redirect(paths.postShow(post.id))
 }
