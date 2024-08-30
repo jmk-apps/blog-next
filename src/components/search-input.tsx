@@ -6,9 +6,11 @@ import * as actions from "@/actions";
 
 
 export default function SearchInput() {
+    const searchParams = useSearchParams();
+
     return (
-        <form action="">
-            <Input />
+        <form action={actions.search}>
+            <Input name='term' defaultValue={searchParams.get('term') || "" } />
         </form>
     )
 }

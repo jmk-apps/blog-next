@@ -33,3 +33,33 @@ export function fetchTopPosts(page?: string): Promise<PostWithData[]> {
     })
 }
 
+export function fetchPostsBySearchTerm(term: string, page?: string ): Promise<PostWithData[]> {
+    let skip_results: number;
+    if (!page) {
+        page = '1'
+    }
+
+    skip_results = ITEMS_PER_PAGE * (parseInt(page) - 1);
+
+    return db.post.findMany({
+        where: {
+            OR: [
+                {title: {contains: term}},
+                {subtitle: {contains: term}},
+                {category: {contains: term}},
+                {content: {contains: term}},
+            ]
+        },
+        orderBy: [
+            {
+                createdAt: "desc"
+            }
+        ],
+        include: {
+            user: {select: {name: true}},
+        },
+        skip: skip_results,
+        take: ITEMS_PER_PAGE,
+    })
+}
+

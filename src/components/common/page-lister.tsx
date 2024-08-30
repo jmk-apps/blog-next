@@ -2,7 +2,7 @@
 
 import {Pagination} from "@nextui-org/react";
 import {ITEMS_PER_PAGE} from "@/db/queries/post";
-import {usePathname, useRouter} from "next/navigation";
+import {usePathname, useSearchParams, useRouter} from "next/navigation";
 
 interface PageListerProps {
     page?: string,
@@ -11,8 +11,11 @@ interface PageListerProps {
 
 
 export default function PageLister({page, totalItems}: PageListerProps) {
+    const searchParams = useSearchParams()
     const pathname = usePathname();
     const router = useRouter();
+
+    const term = searchParams.get("term")
     if (!page) {
         page = "1"
     }
@@ -25,7 +28,11 @@ export default function PageLister({page, totalItems}: PageListerProps) {
     }
 
     const nextPage = (page: number) => {
-        router.push(`${pathname}?page=${page}`)
+        if (term) {
+            router.push(`${pathname}?term=${term}&page=${page}`)
+        } else {
+          router.push(`${pathname}?page=${page}`)
+        }
         router.refresh()
     }
 

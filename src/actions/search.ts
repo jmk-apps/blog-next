@@ -1,8 +1,13 @@
 'use server';
 
-
-// TODO: Work on the search function.
+import {redirect} from "next/navigation";
 
 export async function search(formData: FormData) {
-    console.log(formData);
+    const term = formData.get('term');
+
+    if (typeof term !== 'string' || !term) {
+        redirect('/')
+    }
+
+    redirect(`/search?term=${term}`);
 }
