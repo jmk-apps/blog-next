@@ -19,7 +19,7 @@ export default function PostDeleteButton({postId}: PostCreateButtonProps) {
 
   return (
     <>
-      <Button onPress={onOpen}>Open Modal</Button>
+      <Button color="danger" onPress={onOpen}>Delete</Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (

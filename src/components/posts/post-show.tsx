@@ -4,6 +4,7 @@ import Image from "next/image";
 import sanitizeHtml from 'sanitize-html';
 import PostDeleteButton from "@/components/posts/post-delete-button";
 import {helpFunctions} from "@/lib/help-functions";
+import {auth} from "@/auth";
 
 interface PostShowProps {
     postId: string;
@@ -12,11 +13,12 @@ interface PostShowProps {
 export default async function PostShow({postId}: PostShowProps) {
     // Uncomment the below to test the loading skeleton.
     // await new Promise(resolve => setTimeout(resolve, 2500));
+    const session = await auth()
 
    const post = await db.post.findFirst({
        where: {id: postId},
        include: {
-           user: {select: {name: true}}
+           user: {select: {name: true, id: true}}
        }
    })
 
@@ -46,7 +48,7 @@ export default async function PostShow({postId}: PostShowProps) {
           </div>
           <h3 className="font-bold">{post.subtitle} </h3>
           <div dangerouslySetInnerHTML={{__html: clean_content}}/>
-          <PostDeleteButton postId={postId} />
+          {session?.user?.id === post.user.id && (<PostDeleteButton postId={postId} />)}
           <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"/>
       </div>
   );

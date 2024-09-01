@@ -31,6 +31,7 @@ export default async function HeaderAuth() {
                         <form action={actions.signOut}>
                             <Button type='submit'>Sign Out</Button>
                         </form>
+                        <Link href={paths.postCreate()}>New Post</Link>
                     </div>
                 </PopoverContent>
             </Popover>

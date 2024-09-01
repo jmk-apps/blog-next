@@ -5,7 +5,7 @@ export const ITEMS_PER_PAGE = 2;
 
 export type PostWithData = (
     Post & {
-       user: {name: string | null};
+       user: {name: string | null, id: string | null};
     }
 )
 
@@ -26,7 +26,7 @@ export function fetchTopPosts(page?: string): Promise<PostWithData[]> {
             }
         ],
         include: {
-            user: {select: {name: true}},
+            user: {select: {name: true, id: true}},
         },
         skip: skip_results,
         take: ITEMS_PER_PAGE,
@@ -56,7 +56,7 @@ export function fetchPostsBySearchTerm(term: string, page?: string ): Promise<Po
             }
         ],
         include: {
-            user: {select: {name: true}},
+            user: {select: {name: true, id: true}},
         },
         skip: skip_results,
         take: ITEMS_PER_PAGE,

@@ -6,6 +6,7 @@ import Image from "next/image";
 import PostDeleteButton from "@/components/posts/post-delete-button";
 import {helpFunctions} from "@/lib/help-functions";
 import {Button} from "@nextui-org/react";
+import {auth} from "@/auth";
 
 interface PostListProps {
   fetchData: () => Promise<PostWithData[]>;
@@ -14,6 +15,7 @@ interface PostListProps {
 
 export default async function PostList({fetchData}: PostListProps) {
   const posts = await fetchData();
+  const session = await auth()
 
   const renderedPosts = posts.map((post) => {
 
@@ -40,6 +42,11 @@ export default async function PostList({fetchData}: PostListProps) {
             >
               READ MORE...
             </Button>
+            {session?.user?.id === post.user.id && (
+                <div className="mt-1">
+                  <PostDeleteButton postId={post.id} />
+                </div>
+            )}
             <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"/>
           </div>
       </div>
