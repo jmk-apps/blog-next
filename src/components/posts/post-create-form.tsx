@@ -19,7 +19,7 @@ const CustomEditor = dynamic( () => import( '@/components/ckeditor/custom-editor
 
 export default function PostCreateForm() {
     const [formState, action]= useFormState(
-        actions.createPost, { errors: {} } // TODO remember to create this method in the actions folder
+        actions.createPost, { errors: {} }
     );
 
     const [content, setContent] = useState()
@@ -82,6 +82,10 @@ export default function PostCreateForm() {
                             <p className="text-red-500">{formState.errors.image}</p>
                         )}
                     </div>
+
+                    {formState.errors._form && (
+                        <p className="text-red-500">{formState.errors._form}</p>
+                    )}
 
                     <FormButton color="success">Create Post</FormButton>
                 </div>
