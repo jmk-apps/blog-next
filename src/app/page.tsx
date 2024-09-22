@@ -2,6 +2,8 @@ import PostList from "@/components/posts/post-list";
 import {fetchTopPosts} from "@/db/queries/post";
 import {countTopPosts} from "@/db/queries/pageCounts";
 import PageLister from "@/components/common/page-lister";
+import Sidebar from "@/components/sidebar";
+import Footer from "@/components/footer";
 
 interface SearchParamProps {
     searchParams?: {
@@ -21,9 +23,11 @@ export default async function Home({searchParams}: SearchParamProps) {
                 </div>
                 <div className="col-span-1">
                     <h1>Notifications go here</h1>
+                    <Sidebar/>
                 </div>
             </div>
             <PageLister page={searchParams?.page} totalItems={totalPosts}/>
+            <Footer />
         </>
 
     );

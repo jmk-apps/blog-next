@@ -22,6 +22,15 @@ const paths = {
     },
     account() {
         return '/account';
+    },
+    search(term: string) {
+        return `/search?term=${term}`;
+    },
+    searchCategory(category: string) {
+        return `/search?category=${category}`;
+    },
+    searchDate(date: string) {
+        return `/search?date=${date}`;
     }
 }
 

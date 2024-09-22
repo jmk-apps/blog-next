@@ -16,6 +16,9 @@ export default function PageLister({page, totalItems}: PageListerProps) {
     const router = useRouter();
 
     const term = searchParams.get("term")
+    const category = searchParams.get("category")
+    const date = searchParams.get("date")
+
     if (!page) {
         page = "1"
     }
@@ -30,6 +33,10 @@ export default function PageLister({page, totalItems}: PageListerProps) {
     const nextPage = (page: number) => {
         if (term) {
             router.push(`${pathname}?term=${term}&page=${page}`)
+        } else if (category) {
+            router.push(`${pathname}?category=${category}&page=${page}`)
+        } else if (date) {
+            router.push(`${pathname}?date=${date}&page=${page}`)
         } else {
           router.push(`${pathname}?page=${page}`)
         }

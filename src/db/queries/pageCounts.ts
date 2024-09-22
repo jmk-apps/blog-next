@@ -17,3 +17,25 @@ export function countPostsBySearchTerm(term: string) {
         }
     })
 }
+
+
+// Category
+export function countPostsBySearchCategory(category: string) {
+    return db.post.count({
+        where: {
+            category: category
+        }
+    })
+}
+
+// Date
+export function countPostsBySearchDate(date: string) {
+    return db.post.count({
+        where: {
+            createdAt: {
+                gte: new Date(`${date}-01-01`),
+                lte: new Date(`${date}-12-31`),
+            }
+        }
+    })
+}

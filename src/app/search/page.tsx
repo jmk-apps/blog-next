@@ -1,23 +1,40 @@
 import {redirect} from "next/navigation";
 import PostList from "@/components/posts/post-list";
-import {fetchPostsBySearchTerm} from "@/db/queries/post";
+import {fetchPostsBySearchCategory, fetchPostsBySearchDate, fetchPostsBySearchTerm} from "@/db/queries/post";
 import PageLister from "@/components/common/page-lister";
-import {countPostsBySearchTerm} from "@/db/queries/pageCounts";
+import {countPostsBySearchCategory, countPostsBySearchDate, countPostsBySearchTerm} from "@/db/queries/pageCounts";
 
 interface SearchPageProps {
     searchParams: {
-        term: string;
+        term?: string;
+        category?: string;
+        date?: string;
         page?: string;
     }
 }
 
 export default async function SearchPage({searchParams}: SearchPageProps) {
-    const {term, page} = searchParams;
-    const totalPosts = await countPostsBySearchTerm(term);
+    const {term, category, date, page} = searchParams;
 
-    if (!term) {
-        redirect('/')
+    let totalPosts: number;
+    let postListFunc: any;
+
+    if (term) {
+       totalPosts = await countPostsBySearchTerm(term);
+       postListFunc = fetchPostsBySearchTerm(term, page)
     }
+    else if (category) {
+        totalPosts = await countPostsBySearchCategory(category);
+        postListFunc = fetchPostsBySearchCategory(category, page)
+    }
+    else if (date) {
+        totalPosts = await countPostsBySearchDate(date);
+        postListFunc = fetchPostsBySearchDate(date, page)
+    }
+    else {
+       redirect('/')
+    }
+
 
 
     return (
@@ -25,7 +42,7 @@ export default async function SearchPage({searchParams}: SearchPageProps) {
             <div className="grid grid-cols-4 gap-4 p-4">
                 <div className="col-span-3">
                     <h1>Posts go here</h1>
-                    <PostList fetchData={() => fetchPostsBySearchTerm(term, page)} />
+                    <PostList fetchData={() => postListFunc} />
                 </div>
                 <div className="col-span-1">
                     <h1>Notifications go here</h1>

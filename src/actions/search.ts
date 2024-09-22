@@ -1,6 +1,7 @@
 'use server';
 
 import {redirect} from "next/navigation";
+import paths from "@/paths";
 
 export async function search(formData: FormData) {
     const term = formData.get('term');
@@ -9,5 +10,5 @@ export async function search(formData: FormData) {
         redirect('/')
     }
 
-    redirect(`/search?term=${term}`);
+    redirect(paths.search(term));
 }
