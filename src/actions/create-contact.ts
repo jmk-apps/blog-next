@@ -15,7 +15,7 @@ import Mailgun from 'mailgun.js';
   const mg = mailgun.client({username: 'mailgunAPIkey', key: process.env.MAILGUN_API_KEY || 'key-yourkeyhere'});
 
 // Zod schema
-const createPostSchema = z.object({
+const createContactSchema = z.object({
     name: z.string().min(3),
     email: z.string().email(),
     message: z.string().min(10),
@@ -36,10 +36,8 @@ interface CreateContactFormState {
 
 export async function createContact(formState: CreateContactFormState, formData: FormData) : Promise<CreateContactFormState> {
 
-
-
     // Check if inputted data is correct.
-    const result = createPostSchema.safeParse({
+    const result = createContactSchema.safeParse({
         name: formData.get('name'),
         email: formData.get('email'),
         message: formData.get('message'),

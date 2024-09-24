@@ -4,6 +4,7 @@ import {countTopPosts} from "@/db/queries/pageCounts";
 import PageLister from "@/components/common/page-lister";
 import Sidebar from "@/components/sidebar";
 import Footer from "@/components/footer";
+import SubscribeBar from "@/components/subscribe-bar";
 
 interface SearchParamProps {
     searchParams?: {
@@ -27,6 +28,7 @@ export default async function Home({searchParams}: SearchParamProps) {
                 </div>
             </div>
             <PageLister page={searchParams?.page} totalItems={totalPosts}/>
+            <SubscribeBar />
             <Footer />
         </>
 

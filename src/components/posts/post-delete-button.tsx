@@ -6,7 +6,6 @@ import {useFormState} from "react-dom";
 import { useActionState } from "react"; // Use this in a future release of Next js instead of useFormState
 import * as actions from "@/actions";
 import FormButton from "@/components/common/form-button";
-import DeleteFormButton from "@/components/posts/delete-form-button";
 import { toast } from 'react-toastify';
 import { redirect } from "next/navigation";
 import paths from "@/paths";
@@ -61,9 +60,9 @@ export default function PostDeleteButton({postId}: PostCreateButtonProps) {
                   Close
                 </Button>
                   <form action={formAction}>
-                    <DeleteFormButton color="danger">
+                    <FormButton color="danger">
                       Delete
-                    </DeleteFormButton>
+                    </FormButton>
                   </form>
               </ModalFooter>
             </>

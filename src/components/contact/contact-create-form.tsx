@@ -15,18 +15,10 @@ export default function ContactCreateForm() {
     );
 
     const notify = () => {
-        toast.success('Your message was sent!', {
-            position: "bottom-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            transition: Bounce,
-        });
-    };
+            toast.success("Your message was sent!", {
+            position: "bottom-right"
+          });
+    }
 
     useEffect(() => {
         if (formState.success) {
