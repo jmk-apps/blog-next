@@ -3,7 +3,7 @@ import {notFound} from "next/navigation";
 import Image from "next/image";
 import sanitizeHtml from 'sanitize-html';
 import PostDeleteButton from "@/components/posts/post-delete-button";
-import {helpFunctions} from "@/lib/help-functions";
+import {formatDate} from "@/lib/help-functions";
 import {auth} from "@/auth";
 
 interface PostShowProps {
@@ -28,7 +28,7 @@ export default async function PostShow({postId}: PostShowProps) {
 
    //Format the date
     let post_date: string;
-    post_date = helpFunctions(post.createdAt)
+    post_date = formatDate(post.createdAt)
 
    // Sanitize the content
    const clean_content = sanitizeHtml(post.content)

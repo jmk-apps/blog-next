@@ -1,5 +1,7 @@
+import AccountDetails from "@/components/account/account-details";
+
 export default function AccountPage() {
     return (
-        <div>Account Page</div>
+        <AccountDetails/>
     )
 }

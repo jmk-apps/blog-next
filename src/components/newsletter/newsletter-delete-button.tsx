@@ -11,25 +11,25 @@ import { redirect } from "next/navigation";
 import paths from "@/paths";
 
 
-interface PostDeleteButtonProps {
-    postId: string;
+interface NewsletterDeleteButtonProps {
+    newsletterId: string;
 }
 
-export default function PostDeleteButton({postId}: PostDeleteButtonProps) {
+export default function NewsletterDeleteButton({newsletterId}: NewsletterDeleteButtonProps) {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
-  const [formState, formAction] = useFormState(actions.deletePost.bind(null, postId), { errors: {} })
+  const [formState, formAction] = useFormState(actions.deleteNewsletter.bind(null, newsletterId), { errors: {} })
 
   useEffect(() => {
     if (formState.success) {
         const notify = () => {
-            toast.success("Post successfully deleted!", {
+            toast.success("Newsletter successfully deleted!", {
                 position: "bottom-right",
             });
         }
 
         notify()
-        redirect(paths.home())
+        redirect(paths.newsletters())
 
     }
 
@@ -51,9 +51,9 @@ export default function PostDeleteButton({postId}: PostDeleteButtonProps) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Delete Post</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">Delete Newsletter</ModalHeader>
               <ModalBody>
-                <p>Are you sure you want to delete this post?</p>
+                <p>Are you sure you want to delete this newsletter?</p>
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>

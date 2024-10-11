@@ -4,7 +4,7 @@ import paths from '@/paths';
 import type {PostWithData} from '@/db/queries/post';
 import Image from "next/image";
 import PostDeleteButton from "@/components/posts/post-delete-button";
-import {helpFunctions} from "@/lib/help-functions";
+import {formatDate} from "@/lib/help-functions";
 import {Button} from "@nextui-org/react";
 import {auth} from "@/auth";
 
@@ -22,7 +22,7 @@ export default async function PostList({fetchData}: PostListProps) {
     return (
       <div key={post.id} className="border rounded p-2">
           <div className="m-4">
-            <p className="text-sm">{post.user.name} {helpFunctions(post.createdAt)} in {post.category}</p>
+            <p className="text-sm">{post.user.name} {formatDate(post.createdAt)} in {post.category}</p>
             <h1 className="text-2xl font-bold my-2">{post.title}</h1>
             <div>
               <Image

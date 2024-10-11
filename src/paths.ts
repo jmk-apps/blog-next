@@ -31,6 +31,15 @@ const paths = {
     },
     searchDate(date: string) {
         return `/search?date=${date}`;
+    },
+    newsletters() {
+        return '/newsletters';
+    },
+    newsletterShow(newsletterId: string) {
+        return `/newsletters/${newsletterId}`;
+    },
+    newsletterEdit(newsletterId: string) {
+        return `/newsletters/${newsletterId}/edit`;
     }
 }
 

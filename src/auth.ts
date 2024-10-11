@@ -35,9 +35,14 @@ export const providerMap = providers.map((provider) => {
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
-  // Note: This way of using the Google provider is only for testing
   providers,
   pages: {
     signIn: "/signin",
+  },
+  callbacks: {
+    session({ session, user }) {
+      session.user.role = user.role
+      return session
+    },
   }
 })

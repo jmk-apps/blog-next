@@ -5,3 +5,6 @@ export {createContact} from './create-contact';
 export {deletePost} from './delete-post';
 export {search} from './search';
 export {createSubscriber} from './create-subscriber';
+export {createNewsletter} from './create-newsletter';
+export {deleteNewsletter} from './delete-newsletter';
+export {emailNewsletter} from './email-newsletter';

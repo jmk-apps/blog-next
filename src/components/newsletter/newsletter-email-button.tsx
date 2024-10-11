@@ -11,26 +11,24 @@ import { redirect } from "next/navigation";
 import paths from "@/paths";
 
 
-interface PostDeleteButtonProps {
-    postId: string;
+interface NewsletterEmailButtonProps {
+    newsletterId: string;
 }
 
-export default function PostDeleteButton({postId}: PostDeleteButtonProps) {
+export default function NewsletterEmailButton({newsletterId}: NewsletterEmailButtonProps) {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
-  const [formState, formAction] = useFormState(actions.deletePost.bind(null, postId), { errors: {} })
+  const [formState, formAction] = useFormState(actions.emailNewsletter.bind(null, newsletterId), { errors: {} })
 
   useEffect(() => {
     if (formState.success) {
         const notify = () => {
-            toast.success("Post successfully deleted!", {
+            toast.success("Newsletter successfully deleted!", {
                 position: "bottom-right",
             });
         }
 
         notify()
-        redirect(paths.home())
-
     }
 
     if (formState.errors._form) {
@@ -46,22 +44,22 @@ export default function PostDeleteButton({postId}: PostDeleteButtonProps) {
 
   return (
     <>
-      <Button color="danger" onPress={onOpen}>Delete</Button>
+      <Button color="primary" onPress={onOpen}>Email Newsletter</Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Delete Post</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">Email Newsletter</ModalHeader>
               <ModalBody>
-                <p>Are you sure you want to delete this post?</p>
+                <p>Are you sure you want to email this newsletter to the subscriber list?</p>
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>
                   Close
                 </Button>
                   <form action={formAction}>
-                    <FormButton color="danger">
-                      Delete
+                    <FormButton color="primary">
+                      Send Email
                     </FormButton>
                   </form>
               </ModalFooter>

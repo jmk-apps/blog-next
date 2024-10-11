@@ -4,7 +4,7 @@ import {useFormState} from "react-dom";
 import {useEffect, useRef} from "react";
 import {Input, Textarea} from "@nextui-org/react";
 import FormButton from "@/components/common/form-button";
-import {Bounce, toast, ToastContainer} from 'react-toastify';
+import {toast} from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css"
 import * as actions from "@/actions";
 
