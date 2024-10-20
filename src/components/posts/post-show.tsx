@@ -26,12 +26,17 @@ export default async function PostShow({postId}: PostShowProps) {
        notFound()
    }
 
+   
    //Format the date
     let post_date: string;
     post_date = formatDate(post.createdAt)
 
+
    // Sanitize the content
    const clean_content = sanitizeHtml(post.content)
+
+   // Remove
+   
   return (
       <div className="m-4">
           <p className="text-sm">{post_date} in {post.category}</p>

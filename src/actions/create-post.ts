@@ -92,7 +92,7 @@ export async function createPost(formState: CreatePostFormState, formData: FormD
     // Make request to upload to Cloudinary
     const image_result = await cloudinary.uploader.upload(
         `data:image/png;base64,${imageBase64}`, {
-            folder: 'blog-next'
+            folder: 'blog-next',
         }
     );
 

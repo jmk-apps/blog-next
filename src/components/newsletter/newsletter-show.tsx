@@ -27,9 +27,9 @@ export default async function NewsletterShow({ newsletterId }: NewsletterShowPro
        date_emailed = formatDate(newsletter.dateEmailed)
     }
 
-    let date_updated = "None"
+    let date_created = "None"
     if (newsletter.updatedAt) {
-        date_updated = formatDate(newsletter.updatedAt)
+        date_created = formatDate(newsletter.createdAt)
     }
 
 
@@ -41,17 +41,11 @@ export default async function NewsletterShow({ newsletterId }: NewsletterShowPro
             <h3 className="mt-2 font-bold">Message:</h3>
             <p className="text-sm">{newsletter.message}</p>
             <h3 className="mt-2 font-bold">Newsletter:</h3>
-            <p className="text-sm">{newsletter.newsletterFile}</p>
+            <p className="text-sm">{newsletter.newsletterFile.split("/")[1]}</p>
             <h3 className="mt-2 font-bold">Date emailed:</h3>
             <p className="text-sm">{date_emailed}</p>
-            <h3 className="mt-2 font-bold">Date updated:</h3>
-            <p className="text-sm">{date_updated}</p>
-            <Button
-                href={paths.newsletterEdit(newsletter.id)}
-                as={Link}
-            >
-                Edit
-            </Button>
+            <h3 className="mt-2 font-bold">Date created:</h3>
+            <p className="text-sm">{date_created}</p>
 
         {/*     Delete button */}
             <NewsletterDeleteButton newsletterId={newsletter.id}/>

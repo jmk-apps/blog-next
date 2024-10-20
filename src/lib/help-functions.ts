@@ -15,6 +15,6 @@ export const categories = [
 
 export function formatDate(post_date: Date) {
     let formatted_date: string
-    formatted_date = `${days[post_date.getDay()-1]}-${months[post_date.getMonth()]}-${post_date.getFullYear()}`
+    formatted_date = `${days[post_date.getDate()-1]}-${months[post_date.getMonth()]}-${post_date.getFullYear()}`
     return formatted_date;
 }

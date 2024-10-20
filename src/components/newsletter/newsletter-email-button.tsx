@@ -9,6 +9,7 @@ import FormButton from "@/components/common/form-button";
 import { toast } from 'react-toastify';
 import { redirect } from "next/navigation";
 import paths from "@/paths";
+import { revalidatePath } from "next/cache";
 
 
 interface NewsletterEmailButtonProps {
@@ -23,12 +24,13 @@ export default function NewsletterEmailButton({newsletterId}: NewsletterEmailBut
   useEffect(() => {
     if (formState.success) {
         const notify = () => {
-            toast.success("Newsletter successfully deleted!", {
+            toast.success("Newsletter successfully emailed to subsriber list!", {
                 position: "bottom-right",
             });
         }
-
+        
         notify()
+        redirect(paths.newsletterShow(newsletterId))
     }
 
     if (formState.errors._form) {

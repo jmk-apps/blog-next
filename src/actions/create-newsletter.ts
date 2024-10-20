@@ -75,10 +75,10 @@ export async function createNewsletter(formState: CreateNewsletterFormState, for
     }
 
     // Upload image to Cloudinary
-    const newsletterFile = formData.get('newsletterFile') as string;
+    const newsletterFile = formData.get('newsletterFile') as File;
+    const fileName = newsletterFile.name.split(".")[0]
     const newsletterFileBuffer = await newsletterFile.arrayBuffer();
-    const newsletterFileArray = Array.from(new Uint8Array(newsletterFileBuffer));
-    const newsletterFileData = Buffer.from(newsletterFileArray);
+    const newsletterFileData = Buffer.from(newsletterFileBuffer);
 
     // Convert newsletter data to base 64
     const newsletterFileBase64 = newsletterFileData.toString('base64');
@@ -86,13 +86,17 @@ export async function createNewsletter(formState: CreateNewsletterFormState, for
     // Make request to upload to Cloudinary
     const newsletterFile_result = await cloudinary.uploader.upload(
         `data:application/pdf;base64,${newsletterFileBase64}`, {
-            folder: 'blog-next'
+            folder: 'blog-next',
+            use_filename: true,
+            public_id: fileName,
+            overwrite: true,
         }
     );
 
+    console.log(newsletterFile_result);
+
     // file url to store in the database
-    // const newsletter_file = newsletterFile_result.secure_url
-       const newsletter_file = `${newsletterFile_result.public_id}.${newsletterFile_result.format}`
+    const newsletter_file = `${newsletterFile_result.public_id}.${newsletterFile_result.format}`
 
 
     // Store the data in the database
@@ -125,18 +129,17 @@ export async function createNewsletter(formState: CreateNewsletterFormState, for
        }
     }
 
-    console.log("Done creating the newsletter.")
 
     // Remember to remove this after testing is done
-    return {
-        errors: {}
-    }
+    // return {
+    //     errors: {}
+    // }
 
     // Revalidate the newsletter page
-    // revalidatePath(paths.newsletter())
+    revalidatePath(paths.newsletters())
 
     // Redirect to the newsletter show page
-    // redirect(paths.newsletterShow(newsletter.id))
+    redirect(paths.newsletterShow(newsletter.id))
 
 }
 
