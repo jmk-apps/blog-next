@@ -9,15 +9,17 @@ import FormButton from "@/components/common/form-button";
 import { toast } from 'react-toastify';
 import { redirect } from "next/navigation";
 import paths from "@/paths";
+import type { UseDisclosureReturn } from '@nextui-org/use-disclosure';
 
 
-interface NewsletterDeleteButtonProps {
+interface NewsletterDeleteButtonTableProps {
     newsletterId: string;
+    disclosure: UseDisclosureReturn;
 }
 
-export default function NewsletterDeleteButton({newsletterId}: NewsletterDeleteButtonProps) {
+export default function NewsletterDeleteButtonTable({newsletterId, disclosure}: NewsletterDeleteButtonTableProps) {
 
-  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+  const { isOpen, onOpen, onOpenChange, onClose } = disclosure;
 
   const [formState, formAction] = useFormState(actions.deleteNewsletter.bind(null, newsletterId), { errors: {} })
 
@@ -47,7 +49,6 @@ export default function NewsletterDeleteButton({newsletterId}: NewsletterDeleteB
 
   return (
     <>
-      <Button color="danger" onPress={onOpen}>Delete</Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (

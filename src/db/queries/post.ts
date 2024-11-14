@@ -103,7 +103,7 @@ export function fetchPostsBySearchDate(date: string, page?: string): Promise<Pos
             createdAt: {
                 gte: new Date(`${date}-01-01`),
                 lte: new Date(`${date}-12-31`),
-            }
+            },
         },
         orderBy: [
             {

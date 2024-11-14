@@ -8,3 +8,4 @@ export {createSubscriber} from './create-subscriber';
 export {createNewsletter} from './create-newsletter';
 export {deleteNewsletter} from './delete-newsletter';
 export {emailNewsletter} from './email-newsletter';
+export {getNewsletters} from './get-newsletters';
