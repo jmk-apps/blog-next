@@ -1,7 +1,7 @@
 'use client'
 
 import {Pagination} from "@nextui-org/react";
-import {ITEMS_PER_PAGE} from "@/db/queries/post";
+import {ITEMS_PER_PAGE} from "@/db/queries/newsletter";
 import {usePathname, useSearchParams, useRouter} from "next/navigation";
 
 interface PageListerTableProps {

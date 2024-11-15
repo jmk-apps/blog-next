@@ -1,9 +1,10 @@
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell} from "@nextui-org/react";
-import { fetchNewsletters } from "@/db/queries/newsletter";
+import { fetchNewsletters, countNewsletters } from "@/db/queries/newsletter";
 import { formatDate } from "@/lib/help-functions";
 import { format } from "path";
 import NewsletterActionsButton from "./newsletter-actions-button";
 import NewsletterTable from "./newsletter-table";
+import PageListerTable from "./page-lister-table";
 
 
 interface NewsletterListProps {
@@ -21,8 +22,12 @@ interface NewsletterListProps {
 export default async function NewsletterList({page, subject, author, newsletter, dateCreatedFrom , dateCreatedTo, dateEmailedFrom, dateEmailedTo}: NewsletterListProps) {
     
     const newsletters = await fetchNewsletters(page, subject, author, newsletter, dateCreatedFrom, dateCreatedTo, dateEmailedFrom, dateEmailedTo);
+    const newsletterCount = await countNewsletters(subject, author, newsletter, dateCreatedFrom, dateCreatedTo, dateEmailedFrom, dateEmailedTo);
 
     return (
-        <NewsletterTable newsletters={newsletters} />
+        <div>
+            <NewsletterTable newsletters={newsletters} />
+            <PageListerTable page={page} totalItems={newsletterCount} />
+        </div>
     )
 }

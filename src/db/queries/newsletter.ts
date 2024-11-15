@@ -65,7 +65,7 @@ export function fetchNewsletters(pageP?: string, subjectP?: string, authorP?: st
 export function countNewsletters(subjectP?: string, authorP?: string, newsletterP?: string
     , dateCreatedToP?: string, dateCreatedFromP?: string, dateEmailedToP?: string, dateEmailedFromP?: string ): Promise<number> {
     
-    const dbQuery = {}
+    const dbQuery = {where: {}}
     if (subjectP) {
         dbQuery.where.subject = {contains: subjectP}
     }
