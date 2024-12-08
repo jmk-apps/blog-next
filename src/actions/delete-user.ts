@@ -3,33 +3,32 @@
 import {revalidatePath} from "next/cache";
 import {notFound, redirect} from "next/navigation";
 import {db} from "@/db";
-import type {Newsletter} from "@prisma/client";
+import type {User} from "@prisma/client";
 import paths from "@/paths";
 import { toast } from 'react-toastify';
 
 
-interface DeleteNewsletterFormState {
-  errors: {
-    _form?: string[];
-  };
-  success?: boolean;
+interface DeleteUserFormState {
+    errors: {
+        _form?: string[];
+    };
+    success?: boolean;
 }
 
 
-export async function deleteNewsletter(newsletterId: string, formState: DeleteNewsletterFormState): Promise<DeleteNewsletterFormState> {
-    let newsletter: Newsletter;
+export async function deleteUser(userId: string, formState: DeleteUserFormState): Promise<DeleteUserFormState> {
 
     try {
 
-        // Delete the newsletter
-        // const newsletter = await db.newsletter.delete({
+        // Delete the User
+        // const user = await db.user.delete({
         //     where: {
-        //         id: newsletterId,
+        //         id: userId,
         //     },
         // })
 
 
-        console.log("This is from the delete newsletter")
+        console.log("This is from the delete user")
 
     } catch (err) {
         if (err instanceof Error) {
@@ -47,14 +46,12 @@ export async function deleteNewsletter(newsletterId: string, formState: DeleteNe
         }
     }
 
-    revalidatePath(paths.newsletters())
+    revalidatePath(paths.users())
     return {
         errors: {},
         success: true,
     };
-
 }
-
 
 
 

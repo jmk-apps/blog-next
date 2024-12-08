@@ -1,3 +1,5 @@
+import { user } from "@nextui-org/react";
+
 const paths = {
     home() {
         return '/';
@@ -23,6 +25,9 @@ const paths = {
     account() {
         return '/account';
     },
+    userAccount(userId: string) {
+        return `/account/${userId}`;
+    },
     search(term: string) {
         return `/search?term=${term}`;
     },
@@ -40,6 +45,12 @@ const paths = {
     },
     newsletterEdit(newsletterId: string) {
         return `/newsletters/${newsletterId}/edit`;
+    },
+    subscribers() {
+        return '/subscribers';
+    },
+    users() {
+        return '/users';
     }
 }
 

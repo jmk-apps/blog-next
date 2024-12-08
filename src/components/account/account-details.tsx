@@ -1,6 +1,5 @@
 import Image from "next/image";
 import {auth} from "@/auth";
-import AccountDeleteButton from "@/components/account/account-delete-button";
 
 
 export default async function AccountDetails() {
