@@ -2,7 +2,7 @@ import type {User} from "@prisma/client";
 import {db} from "@/db";
 import exp from "constants";
 
-export const ITEMS_PER_PAGE = 8;
+export const ITEMS_PER_PAGE = 2;
 
 interface UserListProps {
     page?: string;
@@ -22,7 +22,7 @@ export function fetchUsers(pageP?: string, nameP?: string, emailP?: string, role
         pageP = '1'
     }
 
-    skip_results = 8 * (parseInt(pageP) - 1);
+    skip_results = 2 * (parseInt(pageP) - 1);
 
     const dbQuery = {where: {}}
     if (nameP) {

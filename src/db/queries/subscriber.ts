@@ -2,7 +2,7 @@ import type {Subscriber} from "@prisma/client";
 import {db} from "@/db";
 
 
-export const ITEMS_PER_PAGE = 8;
+export const ITEMS_PER_PAGE = 3;
 
 interface SubscriberListProps {
     page?: string;
@@ -17,7 +17,7 @@ export function fetchSubscribers(pageP?: string, emailP?: string, dateCreatedFro
         pageP = '1'
     }
 
-    skip_results = 8 * (parseInt(pageP) - 1);
+    skip_results = 3 * (parseInt(pageP) - 1);
 
     const dbQuery = {where: {}}
     if (emailP) {

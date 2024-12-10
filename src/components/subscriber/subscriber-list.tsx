@@ -1,5 +1,6 @@
 import { countSubscribers, fetchSubscribers } from "@/db/queries/subscriber";
 import SubscriberTable from "./subscriber-table";
+import PageSubscriberTable from "./page-subscriber-table";
 
 
 interface SubscriberListProps {
@@ -18,6 +19,7 @@ export default async function SubscriberList({page, email, dateCreatedFrom, date
     return (
         <div>
             <SubscriberTable subscribers={subscribers} />
+            <PageSubscriberTable page={page} totalItems={subscriberCount} />
         </div>
     )
 }
