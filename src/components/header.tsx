@@ -16,6 +16,7 @@ import Link from "next/link";
 import HeaderAuth from "@/components/header-auth";
 import paths from "@/paths";
 import SearchInput from "@/components/search-input";
+import HeaderAdmin from "./header-admin";
 
 
 export default function Header() {
@@ -49,6 +50,7 @@ export default function Header() {
 
         <NavbarContent justify='end'>
             <SearchInput/>
+            <HeaderAdmin/>
             <HeaderAuth/>
         </NavbarContent>
     </Navbar>

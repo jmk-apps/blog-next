@@ -40,6 +40,9 @@ const paths = {
     newsletters() {
         return '/newsletters';
     },
+    newsletterCreate() {
+        return '/newsletters/new';
+    },
     newsletterShow(newsletterId: string) {
         return `/newsletters/${newsletterId}`;
     },

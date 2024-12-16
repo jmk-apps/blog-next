@@ -1,4 +1,7 @@
 import NewsletterShow from "@/components/newsletter/newsletter-show";
+import { checkAdmin, checkBlogger } from "@/lib/auth-functions";
+import paths from "@/paths";
+import { redirect } from "next/navigation";
 
 
 interface NewsletterShowPageProps {
@@ -8,7 +11,12 @@ interface NewsletterShowPageProps {
 }
 
 
-export default function NewsletterShowPage({params}: NewsletterShowPageProps) {
+export default async function NewsletterShowPage({params}: NewsletterShowPageProps) {
+
+    if ((!await checkAdmin()) || (!await checkBlogger())) {
+        redirect(paths.home())
+    }
+
     const {newsletterId} = params;
 
     return (

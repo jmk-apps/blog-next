@@ -1,4 +1,7 @@
 import NewsletterList from "@/components/newsletter/newsletter-list";
+import { checkAdmin, checkBlogger } from "@/lib/auth-functions";
+import paths from "@/paths";
+import { redirect } from "next/navigation";
 
 interface SearchParamProps {
     searchParams?: {
@@ -13,8 +16,11 @@ interface SearchParamProps {
     }   
 }
 
-export default function NewslettersPage({searchParams}: SearchParamProps) {
+export default async function NewslettersPage({searchParams}: SearchParamProps) {
     
+    if ((!await checkAdmin()) || (!await checkBlogger())) {
+        redirect(paths.home())
+    }
 
     return (
         <NewsletterList 

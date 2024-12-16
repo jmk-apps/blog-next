@@ -1,4 +1,7 @@
 import SubscriberList from "@/components/subscriber/subscriber-list";
+import { checkAdmin } from "@/lib/auth-functions";
+import paths from "@/paths";
+import { redirect } from "next/navigation";
 
 interface SearchParamProps {
     searchParams?: {
@@ -10,7 +13,11 @@ interface SearchParamProps {
 }
 
 
-export default function SubscribersPage({searchParams}: SearchParamProps) {
+export default async function SubscribersPage({searchParams}: SearchParamProps) {
+
+    if ( !await checkAdmin()) {
+        redirect(paths.home())
+    }
         
         return (
             <div>

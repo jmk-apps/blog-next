@@ -1,4 +1,7 @@
 import UserAccountDetails from "@/components/User/user-account-details";
+import { checkAdmin } from "@/lib/auth-functions";
+import paths from "@/paths";
+import { redirect } from "next/navigation";
 
 interface UserAccountPageProps {
     params: {
@@ -6,7 +9,12 @@ interface UserAccountPageProps {
     }
 }
 
-export default function AccountUserPage({params}: UserAccountPageProps) {
+export default async function AccountUserPage({params}: UserAccountPageProps) {
+
+    if (!await checkAdmin()) {
+        redirect(paths.home())
+    }
+
     const {userId} = params;
 
     return (

@@ -1,10 +1,8 @@
-import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell} from "@nextui-org/react";
+import {Link, Button} from "@nextui-org/react";
 import { fetchNewsletters, countNewsletters } from "@/db/queries/newsletter";
-import { formatDate } from "@/lib/help-functions";
-import { format } from "path";
-import NewsletterActionsButton from "./newsletter-actions-button";
 import NewsletterTable from "./newsletter-table";
 import PageListerTable from "./page-lister-table";
+import paths from "@/paths";
 
 
 interface NewsletterListProps {
@@ -26,6 +24,15 @@ export default async function NewsletterList({page, subject, author, newsletter,
 
     return (
         <div>
+            <Button
+                showAnchorIcon
+                as={Link}
+                color="primary"
+                href={paths.newsletterCreate()}
+                variant="solid"
+            >
+                Create Newsletter
+            </Button>
             <NewsletterTable newsletters={newsletters} />
             <PageListerTable page={page} totalItems={newsletterCount} />
         </div>
